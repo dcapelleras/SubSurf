@@ -27,6 +27,8 @@ public class RoadManager : MonoBehaviour
         }
     }
 
+    //se puede hacer que se pueda reiniciar
+
     private void Start()
     {
         StartCoroutine(SpawnRoad());

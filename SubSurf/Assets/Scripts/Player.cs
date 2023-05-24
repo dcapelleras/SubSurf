@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     bool jumped;
     bool falling;
     bool landed;
+    float jumpCooldownTime = 1f;
 
     bool dead;
 
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour
         }
         if (jumped)
         {
+            jumped= false;
             rb.velocity = Vector3.up * jumpForce;
             StartCoroutine(JumpCooldown());
             rb.useGravity = true;
@@ -156,7 +158,7 @@ public class Player : MonoBehaviour
         jumped = false;
         yield return new WaitForSeconds(0.1f);
         falling= true;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(jumpCooldownTime);
         landed= true;
         falling = false;
         isJumping = false;
@@ -192,6 +194,7 @@ public class Player : MonoBehaviour
                 dead = true;
                 RoadManager.Instance.gameOver = true;
                 rb.velocity = -transform.forward * RoadManager.Instance.moveSpeed;
+                rb.useGravity = false;
             }
         }
         else if (other.CompareTag("Finish"))
