@@ -43,7 +43,10 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         lives = livesImages.Count;
-        anim.SetBool("Running", true);
+        if (!isEnemy)
+        {
+            anim.SetBool("Running", true);
+        }
     }
 
     private void Update()
@@ -163,6 +166,10 @@ public class Player : MonoBehaviour
     {
         if (isEnemy)
         {
+            if (other.CompareTag("Player"))
+            {
+                anim.SetTrigger("Crash");
+            }
             return;
         }
         if (other.CompareTag("Immune"))
