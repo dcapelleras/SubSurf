@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     bool jumped;
     bool falling;
     bool landed;
-    float jumpCooldownTime = 1f;
+    float jumpCooldownTime = 0.7f;
 
     bool dead;
 
@@ -199,6 +199,7 @@ public class Player : MonoBehaviour
         }
         else if (other.CompareTag("Finish"))
         {
+            Time.timeScale = 1f;
             RoadManager.Instance.gameFinished= true;
             RoadManager.Instance.GameOver();
             anim.SetTrigger("Fall");
