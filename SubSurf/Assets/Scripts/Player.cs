@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
@@ -195,6 +193,9 @@ public class Player : MonoBehaviour
                 RoadManager.Instance.gameOver = true;
                 rb.velocity = -transform.forward * RoadManager.Instance.moveSpeed;
                 rb.useGravity = false;
+                Vector3 pos = transform.position;
+                pos.y = centerTransform.position.y;
+                rb.position = pos;
             }
         }
         else if (other.CompareTag("Finish"))

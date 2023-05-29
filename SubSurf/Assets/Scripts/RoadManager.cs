@@ -175,6 +175,6 @@ public class RoadManager : MonoBehaviour
         gameOverText.text = "Score: " + points;
         gameOverText.gameObject.SetActive(true);
         maxPointsText.gameObject.SetActive(true);
-        //Time.timeScale = 0f;
+        GameManager.instance.GameEnded();
     }
 }
